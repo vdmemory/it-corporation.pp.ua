@@ -1,5 +1,3 @@
-import { FiCheck } from 'react-icons/fi'
-
 import { configCompany } from '#data/configCompany'
 
 export const getSiteConfig = (t: (key: string) => string) => ({

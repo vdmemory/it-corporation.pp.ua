@@ -1,11 +1,9 @@
-import { Box, Flex, Heading, Text, VisuallyHidden } from '@chakra-ui/react'
+import { Flex, Text } from '@chakra-ui/react'
 import { Link } from '@saas-ui/react'
 import Image from 'next/image'
 
 import * as React from 'react'
 
-import { Em } from '#components/typography'
-import siteConfig from '#data/config'
 import { configCompany } from '#data/configCompany'
 
 export interface LogoProps {
