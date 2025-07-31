@@ -219,6 +219,7 @@ const ContactInfoItem: React.FC<ContactInfoItemProps> = ({
         _dark={{ bg: 'primary.800', color: 'primary.300' }}
         borderRadius="full"
         color="primary.600"
+        h={45}
       >
         <Icon as={icon} boxSize={5} />
       </Box>
