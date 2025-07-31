@@ -21,26 +21,24 @@ import type { NextPage } from 'next'
 import Image from 'next/image'
 import {
   FiArrowRight,
-  FiBox,
-  FiCheck,
   FiCode,
-  FiCopy,
-  FiFlag,
-  FiGrid,
+  FiCpu,
+  FiDatabase,
+  FiGlobe,
   FiLock,
-  FiSearch,
-  FiSliders,
-  FiSmile,
-  FiTerminal,
-  FiThumbsUp,
-  FiToggleLeft,
-  FiTrendingUp,
-  FiUserPlus,
+  FiMonitor,
+  FiServer,
+  FiShield,
+  FiSmartphone,
+  FiTool,
+  FiUsers,
+  FiZap,
 } from 'react-icons/fi'
 
 import * as React from 'react'
 
 import { ButtonLink } from '#components/button-link/button-link'
+import { Contact } from '#components/contact'
 import { Faq } from '#components/faq'
 import { Features } from '#components/features'
 import { BackgroundGradient } from '#components/gradients/background-gradient'
@@ -50,14 +48,15 @@ import {
   HighlightsItem,
   HighlightsTestimonialItem,
 } from '#components/highlights'
+import { useLanguage } from '#components/language-provider'
 import { ChakraLogo, NextjsLogo } from '#components/logos'
 import { FallInPlace } from '#components/motion/fall-in-place'
 import { Pricing } from '#components/pricing/pricing'
 import { Testimonial, Testimonials } from '#components/testimonials'
-import { Em } from '#components/typography'
-import faq from '#data/faq'
-import pricing from '#data/pricing'
-import testimonials from '#data/testimonials'
+import { getContact } from '#data/contact'
+import { getFaq } from '#data/faq'
+import { getPricing } from '#data/pricing'
+import { getTestimonials } from '#data/testimonials'
 
 const Home: NextPage = () => {
   return (
@@ -73,11 +72,15 @@ const Home: NextPage = () => {
       <PricingSection />
 
       <FaqSection />
+
+      <ContactSection />
     </Box>
   )
 }
 
 const HeroSection: React.FC = () => {
+  const { t } = useLanguage()
+
   return (
     <Box position="relative" overflow="hidden">
       <BackgroundGradient height="100%" zIndex="-1" />
@@ -89,26 +92,22 @@ const HeroSection: React.FC = () => {
             px="0"
             title={
               <FallInPlace>
-                Build beautiful
-                <Br /> software faster
+                {t('hero.title').split(' ').slice(0, 2).join(' ')}
+                <Br /> {t('hero.title').split(' ').slice(2).join(' ')}
               </FallInPlace>
             }
             description={
               <FallInPlace delay={0.4} fontWeight="medium">
-                Saas UI is a <Em>React component library</Em>
-                <Br /> that doesn&apos;t get in your way and helps you <Br />{' '}
-                build intuitive SaaS products with speed.
+                {t('hero.description')}
               </FallInPlace>
             }
           >
             <FallInPlace delay={0.8}>
-              <HStack pt="4" pb="12" spacing="8">
-                <NextjsLogo height="28px" /> <ChakraLogo height="20px" />
-              </HStack>
+              <HStack pt="4" pb="12" spacing="8"></HStack>
 
               <ButtonGroup spacing={4} alignItems="center">
-                <ButtonLink colorScheme="primary" size="lg" href="#benefits">
-                  Get started
+                <ButtonLink colorScheme="primary" size="lg" href="#services">
+                  {t('hero.services')}
                 </ButtonLink>
                 <ButtonLink
                   size="lg"
@@ -127,7 +126,7 @@ const HeroSection: React.FC = () => {
                     />
                   }
                 >
-                  Contact us
+                  {t('hero.contact')}
                 </ButtonLink>
               </ButtonGroup>
             </FallInPlace>
@@ -136,7 +135,7 @@ const HeroSection: React.FC = () => {
             height="240px"
             position="absolute"
             display={{ base: 'none', lg: 'block' }}
-            left={{ lg: '60%', xl: '55%' }}
+            left={{ lg: '60%', xl: '60%' }}
             width="80vw"
             maxW="1100px"
             margin="0 auto"
@@ -154,7 +153,7 @@ const HeroSection: React.FC = () => {
                   src="/static/screenshots/list3.png"
                   width={375}
                   height={200}
-                  alt="Screenshot of a ListPage in Saas UI Pro"
+                  alt="Пример веб-приложения IT Corporation"
                   quality="75"
                   priority
                 />
@@ -165,9 +164,9 @@ const HeroSection: React.FC = () => {
                     zIndex: '2',
                   }}
                   src="/static/screenshots/list.webp"
-                  width={580}
-                  height={411}
-                  alt="Screenshot of a ListPage in Saas UI Pro"
+                  width={680}
+                  height={511}
+                  alt="Пример веб-приложения IT Corporation"
                   quality="75"
                   priority
                 />
@@ -182,7 +181,7 @@ const HeroSection: React.FC = () => {
                   src="/static/screenshots/list2.webp"
                   width={375}
                   height={200}
-                  alt="Screenshot of a ListPage in Saas UI Pro"
+                  alt="Пример веб-приложения IT Corporation"
                   quality="75"
                   priority
                 />
@@ -200,33 +199,30 @@ const HeroSection: React.FC = () => {
         pt="20"
         features={[
           {
-            title: 'Accessible',
-            icon: FiSmile,
-            description: 'All components strictly follow WAI-ARIA standards.',
+            title: t('benefits.webdev'),
+            icon: FiGlobe,
+            description: t('benefits.webdev.desc'),
             iconPosition: 'left',
             delay: 0.6,
           },
           {
-            title: 'Themable',
-            icon: FiSliders,
-            description:
-              'Fully customize all components to your brand with theme support and style props.',
+            title: t('benefits.security'),
+            icon: FiShield,
+            description: t('benefits.security.desc'),
             iconPosition: 'left',
             delay: 0.8,
           },
           {
-            title: 'Composable',
-            icon: FiGrid,
-            description:
-              'Compose components to fit your needs and mix them together to create new ones.',
+            title: t('benefits.mobile'),
+            icon: FiSmartphone,
+            description: t('benefits.mobile.desc'),
             iconPosition: 'left',
             delay: 1,
           },
           {
-            title: 'Productive',
-            icon: FiThumbsUp,
-            description:
-              'Designed to reduce boilerplate and fully typed, build your product at speed.',
+            title: t('benefits.consulting'),
+            icon: FiTool,
+            description: t('benefits.consulting.desc'),
             iconPosition: 'left',
             delay: 1.1,
           },
@@ -238,94 +234,56 @@ const HeroSection: React.FC = () => {
 }
 
 const HighlightsSection = () => {
-  const { value, onCopy, hasCopied } = useClipboard('yarn add @saas-ui/react')
+  const { t } = useLanguage()
 
   return (
     <Highlights>
-      <HighlightsItem colSpan={[1, null, 2]} title="Core components">
+      <HighlightsItem colSpan={[1, null, 2]} title={t('highlights.tech.title')}>
         <VStack alignItems="flex-start" spacing="8">
           <Text color="muted" fontSize="xl">
-            Get started for free with <Em>30+ open source components</Em>.
-            Including authentication screens with Clerk, Supabase and Magic.
-            Fully functional forms with React Hook Form. Data tables with React
-            Table.
+            {t('highlights.tech.desc')}
           </Text>
-
-          <Flex
-            rounded="full"
-            borderWidth="1px"
-            flexDirection="row"
-            alignItems="center"
-            py="1"
-            ps="8"
-            pe="2"
-            bg="primary.900"
-            _dark={{ bg: 'gray.900' }}
-          >
-            <Box>
-              <Text color="yellow.400" display="inline">
-                yarn add
-              </Text>{' '}
-              <Text color="cyan.300" display="inline">
-                @saas-ui/react
-              </Text>
-            </Box>
-            <IconButton
-              icon={hasCopied ? <FiCheck /> : <FiCopy />}
-              aria-label="Copy install command"
-              onClick={onCopy}
-              variant="ghost"
-              ms="4"
-              isRound
-              color="white"
-            />
-          </Flex>
         </VStack>
       </HighlightsItem>
-      <HighlightsItem title="Solid foundations">
+      <HighlightsItem title={t('highlights.reliable.title')}>
         <Text color="muted" fontSize="lg">
-          We don&apos;t like to re-invent the wheel, neither should you. We
-          selected the most productive and established tools in the scene and
-          build Saas UI on top of it.
+          {t('highlights.reliable.desc')}
         </Text>
       </HighlightsItem>
       <HighlightsTestimonialItem
-        name="Renata Alink"
-        description="Founder"
+        name="Anna Smirnova"
+        description="IT Director"
         avatar="/static/images/avatar.jpg"
         gradient={['pink.200', 'purple.500']}
       >
-        “Saas UI helped us set up a beautiful modern UI in no time. It saved us
-        hundreds of hours in development time and allowed us to focus on
-        business logic for our specific use-case from the start.”
+        {t('highlights.testimonial')}
       </HighlightsTestimonialItem>
       <HighlightsItem
         colSpan={[1, null, 2]}
-        title="Start your next idea two steps ahead"
+        title={t('highlights.fullcycle.title')}
       >
         <Text color="muted" fontSize="lg">
-          We took care of all your basic frontend needs, so you can start
-          building functionality that makes your product unique.
+          {t('highlights.fullcycle.desc')}
         </Text>
         <Wrap mt="8">
           {[
-            'authentication',
-            'navigation',
-            'crud',
-            'settings',
-            'multi-tenancy',
-            'layouts',
-            'billing',
-            'a11y testing',
-            'server-side rendering',
-            'documentation',
-            'onboarding',
-            'storybooks',
-            'theming',
-            'upselling',
-            'unit testing',
-            'feature flags',
-            'responsiveness',
+            'web development',
+            'mobile apps',
+            'cybersecurity',
+            'cloud solutions',
+            'DevOps',
+            'testing',
+            'UI/UX дизайн',
+            'technical support',
+            'consulting',
+            'integrations',
+            'automation',
+            'analytics',
+            'monitoring',
+            'backup',
+            'scaling',
+            'optimization',
+            'training',
           ].map((value) => (
             <Tag
               key={value}
@@ -344,9 +302,11 @@ const HighlightsSection = () => {
 }
 
 const FeaturesSection = () => {
+  const { t } = useLanguage()
+
   return (
     <Features
-      id="features"
+      id="services"
       title={
         <Heading
           lineHeight="short"
@@ -354,88 +314,67 @@ const FeaturesSection = () => {
           textAlign="left"
           as="p"
         >
-          Not your standard
-          <Br /> dashboard template.
+          {t('features.title').split(' ')[0]}
+          <Br /> {t('features.title').split(' ').slice(1).join(' ')}
         </Heading>
       }
-      description={
-        <>
-          Saas UI Pro includes everything you need to build modern frontends.
-          <Br />
-          Use it as a template for your next product or foundation for your
-          design system.
-        </>
-      }
+      description={<>{t('features.description')}</>}
       align="left"
       columns={[1, 2, 3]}
       iconSize={4}
       features={[
         {
-          title: '#components.',
-          icon: FiBox,
-          description:
-            'All premium components are available on a private NPM registery, no more copy pasting and always up-to-date.',
+          title: t('features.webdev.title'),
+          icon: FiGlobe,
+          description: t('features.webdev.desc'),
           variant: 'inline',
         },
         {
-          title: 'Starterkits.',
+          title: t('features.security.title'),
           icon: FiLock,
-          description:
-            'Example apps in Next.JS, Electron. Including authentication, billing, example pages, everything you need to get started FAST.',
+          description: t('features.security.desc'),
           variant: 'inline',
         },
         {
-          title: 'Documentation.',
-          icon: FiSearch,
-          description:
-            'Extensively documented, including storybooks, best practices, use-cases and examples.',
+          title: t('features.cloud.title'),
+          icon: FiServer,
+          description: t('features.cloud.desc'),
           variant: 'inline',
         },
         {
-          title: 'Onboarding.',
-          icon: FiUserPlus,
-          description:
-            'Add user onboarding flows, like tours, hints and inline documentation without breaking a sweat.',
+          title: t('features.mobile.title'),
+          icon: FiSmartphone,
+          description: t('features.mobile.desc'),
           variant: 'inline',
         },
         {
-          title: 'Feature flags.',
-          icon: FiFlag,
-          description:
-            "Implement feature toggles for your billing plans with easy to use hooks. Connect Flagsmith, or other remote config services once you're ready.",
+          title: t('features.devops.title'),
+          icon: FiZap,
+          description: t('features.devops.desc'),
           variant: 'inline',
         },
         {
-          title: 'Upselling.',
-          icon: FiTrendingUp,
-          description:
-            '#components and hooks for upgrade flows designed to make upgrading inside your app frictionless.',
+          title: t('features.database.title'),
+          icon: FiDatabase,
+          description: t('features.database.desc'),
           variant: 'inline',
         },
         {
-          title: 'Themes.',
-          icon: FiToggleLeft,
-          description:
-            'Includes multiple themes with darkmode support, always have the perfect starting point for your next project.',
+          title: t('features.integration.title'),
+          icon: FiCpu,
+          description: t('features.integration.desc'),
           variant: 'inline',
         },
         {
-          title: 'Generators.',
-          icon: FiTerminal,
-          description:
-            'Extend your design system while maintaininig code quality and consistency with built-in generators.',
+          title: t('features.support.title'),
+          icon: FiMonitor,
+          description: t('features.support.desc'),
           variant: 'inline',
         },
         {
-          title: 'Monorepo.',
-          icon: FiCode,
-          description: (
-            <>
-              All code is available as packages in a high-performance{' '}
-              <Link href="https://turborepo.com">Turborepo</Link>, you have full
-              control to modify and adjust it to your workflow.
-            </>
-          ),
+          title: t('features.consulting.title'),
+          icon: FiUsers,
+          description: t('features.consulting.desc'),
           variant: 'inline',
         },
       ]}
@@ -444,6 +383,9 @@ const FeaturesSection = () => {
 }
 
 const TestimonialsSection = () => {
+  const { t } = useLanguage()
+  const testimonials = getTestimonials(t)
+
   const columns = React.useMemo(() => {
     return testimonials.items.reduce<Array<typeof testimonials.items>>(
       (columns, t, i) => {
@@ -475,17 +417,30 @@ const TestimonialsSection = () => {
 }
 
 const PricingSection = () => {
+  const { t } = useLanguage()
+  const pricing = getPricing(t)
+
   return (
     <Pricing {...pricing}>
       <Text p="8" textAlign="center" color="muted">
-        VAT may be applicable depending on your location.
+        {t('pricing.vat')}
       </Text>
     </Pricing>
   )
 }
 
 const FaqSection = () => {
+  const { t } = useLanguage()
+  const faq = getFaq(t)
+
   return <Faq {...faq} />
+}
+
+const ContactSection = () => {
+  const { t, language } = useLanguage()
+  const contact = getContact(t, language)
+
+  return <Contact {...contact} />
 }
 
 export default Home

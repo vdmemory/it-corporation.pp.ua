@@ -1,32 +1,32 @@
 import * as React from 'react'
 
-const faq = {
-  title: 'Frequently asked questions',
+export const getFaq = (t: (key: string) => string) => ({
+  title: t('faq.title'),
   // description: '',
   items: [
     {
-      q: 'How many products can I use Saas UI Pro for?',
-      a: (
-        <>
-          The single license can be used for one commercial application or SaaS
-          product and unlimited internal tools. You can buy as many licenses as
-          you need. <br /> The unlimited license does not have any restrictions.
-        </>
-      ),
+      q: t('faq.q1'),
+      a: <>{t('faq.a1')}</>,
     },
     {
-      q: 'Can I use Saas UI Pro for client work?',
-      a: "Yes, that's totally up to you, as long as it fits the license you purchase.",
+      q: t('faq.q2'),
+      a: t('faq.a2'),
     },
     {
-      q: 'Can I use Saas UI Pro for Open Source projects?',
-      a: 'No currently not. A large part of Saas UI is already released under MIT license. We try to give back to the community as much as possible.',
+      q: t('faq.q3'),
+      a: t('faq.a3'),
     },
     {
-      q: 'Does Saas UI include Figma, Sketch or other design files?',
-      a: 'No, Saas UI does not include any design assets. Maintaining design resources costs a lot of extra effort. We believe small teams can move much faster by designing directly in code, with help of Storybooks.',
+      q: t('faq.q4'),
+      a: t('faq.a4'),
+    },
+    {
+      q: t('faq.q5'),
+      a: t('faq.a5'),
+    },
+    {
+      q: t('faq.q6'),
+      a: t('faq.a6'),
     },
   ],
-}
-
-export default faq
+})

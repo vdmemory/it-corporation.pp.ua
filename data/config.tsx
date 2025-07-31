@@ -2,25 +2,25 @@ import { FiCheck } from 'react-icons/fi'
 
 import { configCompany } from '#data/configCompany'
 
-const siteConfig = {
+export const getSiteConfig = (t: (key: string) => string) => ({
   termsUrl: '#',
   privacyUrl: '#',
   header: {
     links: [
       {
-        id: 'features',
-        label: 'Features',
+        id: 'services',
+        label: t('nav.services'),
       },
       {
         id: 'pricing',
-        label: 'Pricing',
+        label: t('nav.pricing'),
       },
       {
         id: 'faq',
-        label: 'FAQ',
+        label: t('nav.faq'),
       },
       {
-        label: 'Contact',
+        label: t('nav.contact'),
         href: '#contact',
         variant: 'primary',
       },
@@ -29,48 +29,21 @@ const siteConfig = {
   footer: {
     copyright: (
       <>
-        Built by{' '}
+        {t('footer.copyright')}{' '}
         <strong style={{ color: 'white' }}>
           &#39;{configCompany.name}&#39;
         </strong>
-        . <span>© {new Date().getFullYear()} All rights reserved.</span>
+        .{' '}
+        <span>
+          © {new Date().getFullYear()} {t('footer.rights')}
+        </span>
       </>
     ),
     links: [
       {
-        href: 'mailto:hello@saas-ui.dev',
-        label: 'Contact',
+        href: `mailto:${configCompany.email}`,
+        label: t('footer.contact'),
       },
     ],
   },
-  signup: {
-    title: 'Start building with Saas UI',
-    features: [
-      {
-        icon: FiCheck,
-        title: 'Accessible',
-        description: 'All components strictly follow WAI-ARIA standards.',
-      },
-      {
-        icon: FiCheck,
-        title: 'Themable',
-        description:
-          'Fully customize all components to your brand with theme support and style props.',
-      },
-      {
-        icon: FiCheck,
-        title: 'Composable',
-        description:
-          'Compose components to fit your needs and mix them together to create new ones.',
-      },
-      {
-        icon: FiCheck,
-        title: 'Productive',
-        description:
-          'Designed to reduce boilerplate and fully typed, build your product at speed.',
-      },
-    ],
-  },
-}
-
-export default siteConfig
+})

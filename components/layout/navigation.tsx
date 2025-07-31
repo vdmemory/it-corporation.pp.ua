@@ -8,11 +8,14 @@ import * as React from 'react'
 import { MobileNavButton } from '#components/mobile-nav'
 import { MobileNavContent } from '#components/mobile-nav'
 import { NavLink } from '#components/nav-link'
-import siteConfig from '#data/config'
+import { getSiteConfig } from '#data/config'
+import { useLanguage } from '#components/language-provider'
 
 import ThemeToggle from './theme-toggle'
 
 const Navigation: React.FC = () => {
+  const { t } = useLanguage()
+  const siteConfig = getSiteConfig(t)
   const mobileNav = useDisclosure()
   const path = usePathname()
   const activeId = useScrollSpy(

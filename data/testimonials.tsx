@@ -1,42 +1,23 @@
-export default {
-  title: 'Loved by tech people',
+export const getTestimonials = (t: (key: string) => string) => ({
+  title: t('testimonials.title'),
   items: [
     {
-      name: 'Eelco Wiersma',
-      description: 'Founder Saas UI',
-      avatar:
-        'https://pbs.twimg.com/profile_images/1470742164024008706/k-eXHtu0_normal.jpg',
-      children: (
-        <>
-          “With SaaS UI I am able to produce high quality dashboard apps and
-          internal tools without a lot of design skills. The ROI really is
-          amazing.”
-        </>
-      ),
+      name: 'Alexander Petrov',
+      description: 'CEO, TechStart',
+      avatar: '/static/images/avatar.jpg',
+      children: <>{t('testimonials.item1.comment')}</>,
     },
     {
-      name: 'Caroline Yahaya',
-      description: 'Fullstack Developer',
+      name: 'Maria Ivanova',
+      description: 'CTO, FinanceApp',
       avatar: '/static/images/avatar2.jpg',
-      children: (
-        <>
-          “Saas UI allows me to build beautiful and functional UI super fast.
-          The components are very well thought out and the Next.js starter kit
-          saved me at least 100 hours of work.”
-        </>
-      ),
+      children: <>{t('testimonials.item2.comment')}</>,
     },
     {
-      name: 'Alberto Vazquez',
-      description: 'Frontend Engineer',
+      name: 'Dmitry Kozlov',
+      description: 'Founder, E-commerce Plus',
       avatar: '/static/images/avatar3.jpg',
-      children: (
-        <>
-          “Saas UI gave us a perfect starting point for our project, having the
-          storybooks already set up with beautifully crafted components and
-          fully mocked pages was a treat.”
-        </>
-      ),
+      children: <>{t('testimonials.item3.comment')}</>,
     },
   ],
-}
+})

@@ -20,7 +20,8 @@ import { RemoveScroll } from 'react-remove-scroll'
 import * as React from 'react'
 
 import { Logo } from '#components/layout/logo'
-import siteConfig from '#data/config'
+import { getSiteConfig } from '#data/config'
+import { useLanguage } from '#components/language-provider'
 
 interface NavLinkProps extends LinkProps {
   label: string
@@ -65,6 +66,8 @@ interface MobileNavContentProps {
 
 export function MobileNavContent(props: MobileNavContentProps) {
   const { isOpen, onClose = () => {} } = props
+  const { t } = useLanguage()
+  const siteConfig = getSiteConfig(t)
   const closeBtnRef = React.useRef<HTMLButtonElement>(null)
   const pathname = usePathname()
   const bgColor = useColorModeValue('whiteAlpha.900', 'blackAlpha.900')

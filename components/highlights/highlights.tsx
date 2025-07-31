@@ -72,7 +72,7 @@ export const HighlightsTestimonialItem: React.FC<
         inset="0px"
         pointerEvents="none"
         zIndex="0"
-        _dark={{ opacity: 0.5, filter: 'blur(50px)' }}
+        _dark={{ opacity: 0.7, filter: 'blur(30px)' }}
       />
       <Testimonial
         name={name}

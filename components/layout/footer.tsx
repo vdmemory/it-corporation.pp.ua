@@ -14,7 +14,8 @@ import Image from 'next/image'
 import * as React from 'react'
 
 import SocialLinks from '#components/SocialLinks'
-import siteConfig from '#data/config'
+import { useLanguage } from '#components/language-provider'
+import { getSiteConfig } from '#data/config'
 import { configCompany } from '#data/configCompany'
 
 export interface FooterProps extends BoxProps {
@@ -23,6 +24,8 @@ export interface FooterProps extends BoxProps {
 
 export const Footer: React.FC<FooterProps> = (props) => {
   const { columns = 2, ...rest } = props
+  const { t, language } = useLanguage()
+  const siteConfig = getSiteConfig(t)
   return (
     <Box bg="white" _dark={{ bg: 'gray.900' }} {...rest}>
       <Container maxW="container.2xl" px="8" py="8">
@@ -48,7 +51,11 @@ export const Footer: React.FC<FooterProps> = (props) => {
                   alignItems="center"
                   fontWeight="bold"
                 >
-                  {configCompany.info}
+                  {language === 'en'
+                    ? configCompany.infoEng
+                    : language === 'ua'
+                      ? configCompany.infoUa
+                      : configCompany.info}
                 </Text>
               </Flex>
             </Stack>

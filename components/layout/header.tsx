@@ -3,6 +3,7 @@ import {
   BoxProps,
   Container,
   Flex,
+  HStack,
   useColorModeValue,
 } from '@chakra-ui/react'
 import { useScroll } from 'framer-motion'
@@ -10,6 +11,7 @@ import { useScroll } from 'framer-motion'
 import * as React from 'react'
 
 import SocialLinks from '#components/SocialLinks'
+import { LanguageSwitcher } from '#components/language-switcher'
 
 import { Logo } from './logo'
 import Navigation from './navigation'
@@ -60,7 +62,10 @@ export const Header = (props: HeaderProps) => {
             }}
           />
           <Navigation />
-          <SocialLinks isHeader />
+          <HStack spacing={2}>
+            <LanguageSwitcher />
+            <SocialLinks isHeader />
+          </HStack>
         </Flex>
       </Container>
     </Box>
