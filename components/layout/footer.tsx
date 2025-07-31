@@ -9,8 +9,13 @@ import {
   Text,
 } from '@chakra-ui/react'
 import { Link, LinkProps } from '@saas-ui/react'
+import Image from 'next/image'
 
+import * as React from 'react'
+
+import SocialLinks from '#components/SocialLinks'
 import siteConfig from '#data/config'
+import { configCompany } from '#data/configCompany'
 
 export interface FooterProps extends BoxProps {
   columns?: number
@@ -25,11 +30,27 @@ export const Footer: React.FC<FooterProps> = (props) => {
           <Stack spacing="8">
             <Stack alignItems="flex-start">
               <Flex>
-                <Box as={siteConfig.logo} flex="1" height="32px" />
+                <Image
+                  style={{
+                    borderRadius: '30px',
+                  }}
+                  src="/static/icons/logo.png"
+                  width={40}
+                  height={34}
+                  alt="Screenshot of a ListPage in Saas UI Pro"
+                  quality="75"
+                  priority
+                />
+                <Text
+                  display="flex"
+                  color="muted"
+                  fontSize="xl"
+                  alignItems="center"
+                  fontWeight="bold"
+                >
+                  {configCompany.info}
+                </Text>
               </Flex>
-              <Text fontSize="md" color="muted">
-                {siteConfig.seo.description}
-              </Text>
             </Stack>
             <Copyright>{siteConfig.footer.copyright}</Copyright>
           </Stack>
@@ -39,6 +60,7 @@ export const Footer: React.FC<FooterProps> = (props) => {
                 {label}
               </FooterLink>
             ))}
+            <SocialLinks />
           </HStack>
         </SimpleGrid>
       </Container>

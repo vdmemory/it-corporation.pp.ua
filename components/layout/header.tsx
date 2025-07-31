@@ -9,6 +9,8 @@ import { useScroll } from 'framer-motion'
 
 import * as React from 'react'
 
+import SocialLinks from '#components/SocialLinks'
+
 import { Logo } from './logo'
 import Navigation from './navigation'
 
@@ -58,6 +60,7 @@ export const Header = (props: HeaderProps) => {
             }}
           />
           <Navigation />
+          <SocialLinks isHeader />
         </Flex>
       </Container>
     </Box>

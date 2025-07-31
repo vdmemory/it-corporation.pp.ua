@@ -1,8 +1,8 @@
 import {
-  chakra,
   HTMLChakraProps,
   Text,
   TextProps,
+  chakra,
   useColorModeValue,
 } from '@chakra-ui/react'
 
@@ -16,14 +16,5 @@ export const Em: React.FC<HTMLChakraProps<'em'>> = ({ children, ...props }) => {
     >
       {children}
     </Text>
-  )
-}
-
-// @todo make this configurable
-export const Br: React.FC<HTMLChakraProps<'span'>> = (props) => {
-  return (
-    <chakra.span {...props}>
-      <br />
-    </chakra.span>
   )
 }

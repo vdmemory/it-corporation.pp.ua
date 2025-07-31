@@ -14,7 +14,6 @@ import ThemeToggle from './theme-toggle'
 
 const Navigation: React.FC = () => {
   const mobileNav = useDisclosure()
-  const router = useRouter()
   const path = usePathname()
   const activeId = useScrollSpy(
     siteConfig.header.links
@@ -52,7 +51,7 @@ const Navigation: React.FC = () => {
         )
       })}
 
-      <ThemeToggle />
+      {/*<ThemeToggle />*/}
 
       <MobileNavButton
         ref={mobileNavBtnRef}

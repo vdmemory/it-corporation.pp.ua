@@ -1,9 +1,12 @@
-import { Box, Flex, Heading, VisuallyHidden } from '@chakra-ui/react'
+import { Box, Flex, Heading, Text, VisuallyHidden } from '@chakra-ui/react'
 import { Link } from '@saas-ui/react'
+import Image from 'next/image'
 
 import * as React from 'react'
 
+import { Em } from '#components/typography'
 import siteConfig from '#data/config'
+import { configCompany } from '#data/configCompany'
 
 export interface LogoProps {
   href?: string
@@ -11,28 +14,36 @@ export interface LogoProps {
 }
 
 export const Logo = ({ href = '/', onClick }: LogoProps) => {
-  let logo
-  if (siteConfig.logo) {
-    logo = <Box as={siteConfig.logo} height="32px" mt="-4px" />
-  } else {
-    logo = (
-      <Heading as="h1" size="md">
-        {siteConfig.seo?.title}
-      </Heading>
-    )
-  }
-
   return (
-    <Flex h="8" flexShrink="0" alignItems="flex-start">
+    <Flex h="14" flexShrink="0" alignItems="flex-center">
       <Link
         href={href}
         display="flex"
         p="1"
         borderRadius="sm"
         onClick={onClick}
+        gap="1rem"
       >
-        {logo}
-        <VisuallyHidden>{siteConfig.seo?.title}</VisuallyHidden>
+        <Image
+          style={{
+            borderRadius: '30px',
+          }}
+          src="/static/icons/logo.png"
+          width={50}
+          height={44}
+          alt="Screenshot of a ListPage in Saas UI Pro"
+          quality="75"
+          priority
+        />
+        <Text
+          display="flex"
+          color="muted"
+          fontSize="xl"
+          alignItems="center"
+          fontWeight="bold"
+        >
+          {configCompany.name}
+        </Text>
       </Link>
     </Flex>
   )

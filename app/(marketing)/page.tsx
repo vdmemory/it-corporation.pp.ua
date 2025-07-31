@@ -17,7 +17,7 @@ import {
   useClipboard,
 } from '@chakra-ui/react'
 import { Br, Link } from '@saas-ui/react'
-import type { Metadata, NextPage } from 'next'
+import type { NextPage } from 'next'
 import Image from 'next/image'
 import {
   FiArrowRight,
@@ -58,11 +58,6 @@ import { Em } from '#components/typography'
 import faq from '#data/faq'
 import pricing from '#data/pricing'
 import testimonials from '#data/testimonials'
-
-export const meta: Metadata = {
-  title: 'Saas UI Landingspage',
-  description: 'Free SaaS landingspage starter kit',
-}
 
 const Home: NextPage = () => {
   return (
@@ -112,12 +107,12 @@ const HeroSection: React.FC = () => {
               </HStack>
 
               <ButtonGroup spacing={4} alignItems="center">
-                <ButtonLink colorScheme="primary" size="lg" href="/signup">
-                  Sign Up
+                <ButtonLink colorScheme="primary" size="lg" href="#benefits">
+                  Get started
                 </ButtonLink>
                 <ButtonLink
                   size="lg"
-                  href="https://demo.saas-ui.dev"
+                  href="#contact"
                   variant="outline"
                   rightIcon={
                     <Icon
@@ -132,13 +127,13 @@ const HeroSection: React.FC = () => {
                     />
                   }
                 >
-                  View demo
+                  Contact us
                 </ButtonLink>
               </ButtonGroup>
             </FallInPlace>
           </Hero>
           <Box
-            height="600px"
+            height="240px"
             position="absolute"
             display={{ base: 'none', lg: 'block' }}
             left={{ lg: '60%', xl: '55%' }}
@@ -149,9 +144,44 @@ const HeroSection: React.FC = () => {
             <FallInPlace delay={1}>
               <Box overflow="hidden" height="100%">
                 <Image
-                  src="/static/screenshots/list.png"
-                  width={1200}
-                  height={762}
+                  style={{
+                    position: 'absolute',
+                    top: '-120px',
+                    left: '160px',
+                    borderRadius: '8px',
+                    zIndex: '1',
+                  }}
+                  src="/static/screenshots/list3.png"
+                  width={375}
+                  height={200}
+                  alt="Screenshot of a ListPage in Saas UI Pro"
+                  quality="75"
+                  priority
+                />
+                <Image
+                  style={{
+                    position: 'absolute',
+                    borderRadius: '8px',
+                    zIndex: '2',
+                  }}
+                  src="/static/screenshots/list.webp"
+                  width={580}
+                  height={411}
+                  alt="Screenshot of a ListPage in Saas UI Pro"
+                  quality="75"
+                  priority
+                />
+                <Image
+                  style={{
+                    position: 'absolute',
+                    top: '-40px',
+                    left: '-140px',
+                    borderRadius: '8px',
+                    zIndex: '3',
+                  }}
+                  src="/static/screenshots/list2.webp"
+                  width={375}
+                  height={200}
                   alt="Screenshot of a ListPage in Saas UI Pro"
                   quality="75"
                   priority
