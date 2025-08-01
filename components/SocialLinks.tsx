@@ -26,8 +26,8 @@ const SocialLinks = ({
       color: '#FBB216',
     },
     {
-      icon: '/static/icons/prom.png',
-      href: configCompany.prom,
+      icon: '/static/icons/upwork.png',
+      href: configCompany.upwork,
       color: '#FF4500',
     },
   ]

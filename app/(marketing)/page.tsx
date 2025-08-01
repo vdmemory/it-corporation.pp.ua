@@ -4,24 +4,20 @@ import {
   Box,
   ButtonGroup,
   Container,
-  Flex,
   HStack,
   Heading,
   Icon,
-  IconButton,
   Stack,
   Tag,
   Text,
   VStack,
   Wrap,
-  useClipboard,
 } from '@chakra-ui/react'
-import { Br, Link } from '@saas-ui/react'
+import { Br } from '@saas-ui/react'
 import type { NextPage } from 'next'
 import Image from 'next/image'
 import {
   FiArrowRight,
-  FiCode,
   FiCpu,
   FiDatabase,
   FiGlobe,
@@ -49,7 +45,6 @@ import {
   HighlightsTestimonialItem,
 } from '#components/highlights'
 import { useLanguage } from '#components/language-provider'
-import { ChakraLogo, NextjsLogo } from '#components/logos'
 import { FallInPlace } from '#components/motion/fall-in-place'
 import { Pricing } from '#components/pricing/pricing'
 import { Testimonial, Testimonials } from '#components/testimonials'
@@ -255,6 +250,7 @@ const HighlightsSection = () => {
         description="IT Director"
         avatar="/static/images/avatar.jpg"
         gradient={['pink.200', 'purple.500']}
+        bg={'transparent'}
       >
         {t('highlights.testimonial')}
       </HighlightsTestimonialItem>
@@ -386,16 +382,14 @@ const TestimonialsSection = () => {
   const { t } = useLanguage()
   const testimonials = getTestimonials(t)
 
-  const columns = React.useMemo(() => {
-    return testimonials.items.reduce<Array<typeof testimonials.items>>(
-      (columns, t, i) => {
-        columns[i % 3].push(t)
+  const columns = testimonials.items.reduce<Array<typeof testimonials.items>>(
+    (columns, t, i) => {
+      columns[i % 3].push(t)
 
-        return columns
-      },
-      [[], [], []],
-    )
-  }, [])
+      return columns
+    },
+    [[], [], []],
+  )
 
   return (
     <Testimonials
